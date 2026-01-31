@@ -1,0 +1,59 @@
+.profile-img {
+  width: 70%;
+  max-width: 280px;   // mobile cap
+  margin-inline: auto;
+
+  @media (min-width: 576px) {
+    width: 65%;
+    max-width: 320px;
+  }
+
+  @media (min-width: 768px) {
+    width: 70%;
+    max-width: 360px;
+  }
+
+  @media (min-width: 992px) {
+    width: 75%;
+    max-width: 420px;
+  }
+}
+.hero-visual {
+  position: relative;
+  width: 100%;
+  margin-top: 30px;
+  max-width: 320px;
+  aspect-ratio: 1 / 1;
+  margin-inline: auto; // Centers the container itself
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-glass {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow:
+    0 0 50px rgba(155, 92, 255, 0.35),
+    inset 0 0 25px rgba(255, 255, 255, 0.08);
+  overflow: hidden; // Ensures image doesn't bleed out of the circle
+}
+
+.hero-image {
+  width: 100%;   // Fill the inner space
+  height: 100%;
+  object-fit: cover; // 'cover' is better for portraits to fill the circle
+}
+
+// Gradient Text Utility
+.gradient-text {
+  background: linear-gradient(45deg, #fff, #9b5cff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

@@ -1,0 +1,17 @@
+<section id="work" class="container py-5">
+<h2 class="text-center mb-5 gradient-text">Work Experience</h2>
+  <div *ngFor="let job of jobs" class="glass glow p-4 mb-4">
+    <h5>{{job.role}}</h5>
+    <div><b>{{job.company}}</b></div>
+    @if(job.endDate)
+    {
+      <div><small>{{job.startDate}} to {{job.endDate}} </small></div>
+    }
+    @else
+    {
+      <div><small>Working Since {{job.startDate}} </small></div>
+    }
+    <ul class="mt-3"><li *ngFor="let p of job.points">{{p}}</li></ul>
+    <b>Tech Used : </b><small>{{job.techUsed}}</small> 
+  </div>
+</section>

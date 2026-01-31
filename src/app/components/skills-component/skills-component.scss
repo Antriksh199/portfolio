@@ -1,0 +1,14 @@
+.skill-bar {
+height: 8px;
+background: rgba(255,255,255,0.15);
+border-radius: 999px;
+overflow: hidden;
+}
+
+
+.skill-progress {
+height: 100%;
+background: linear-gradient(90deg,var(--purple),var(--cyan),var(--pink));
+border-radius: 999px;
+transition: width .8s ease;
+}

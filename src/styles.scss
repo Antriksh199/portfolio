@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+:root {
+  --bg-main: #0a0a0a;
+  --glass-bg: rgba(255,255,255,0.05);
+  --blur: 16px;
+  --purple:#9b5cff; --cyan:#2de2e6; --pink:#ff4ecd;
+}
+
+body {
+  background: var(--bg-main);
+  color: #fff;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--blur)) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 1.25rem;
+}
+
+.glow {
+  box-shadow: 0 0 40px rgba(155,92,255,.15);
+}
+
+.gradient-text {
+  background: linear-gradient(90deg,var(--purple),var(--cyan),var(--pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

@@ -1,0 +1,27 @@
+<section id="projects" class="container py-5">
+  <h2 class="text-center mb-5 gradient-text">Projects</h2>
+
+  <div class="row g-4">
+    <div class="col-md-6 col-lg-4" *ngFor="let p of projects">
+      <div class="glass glow p-3 h-100 d-flex flex-column">
+
+        <h6>{{ p.title }}</h6>
+        <small class="opacity-75">{{ p.description }}</small>
+        <div class="flex-grow-1"></div>
+        <footer class="d-flex justify-content-end pt-3">
+          <a
+            *ngIf="p.github"
+            [href]="p.github"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="github-link d-inline-flex align-items-center gap-2"
+          >
+            <i class="bi bi-github"></i>
+            <span>View Code</span>
+          </a>
+        </footer>
+
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,62 @@
+<section id="contact" class="container py-5">
+  <h2 class="text-center mb-5 gradient-text">Get in Touch</h2>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <form
+        [formGroup]="form"
+        (ngSubmit)="submit()"
+        class="glass glow p-4 p-md-5"
+        novalidate
+      >
+
+        <div class="mb-3">
+          <label class="form-label">Full Name</label>
+          <input
+            type="text"
+            class="form-control glass-input"
+            formControlName="name"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control glass-input"
+            formControlName="email"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Phone Number</label>
+          <input
+            type="tel"
+            class="form-control glass-input"
+            formControlName="phone"
+          />
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label">Your Query</label>
+          <textarea
+            rows="4"
+            class="form-control glass-input"
+            formControlName="message"
+          ></textarea>
+        </div>
+
+        <div class="text-center">
+          <button
+            class="btn glass glow px-5"
+            type="submit"
+            [disabled]="form.invalid"
+          >
+            Submit
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</section>

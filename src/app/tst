@@ -1,0 +1,967 @@
+// ============================================
+// portfolio.component.ts
+// ============================================
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+interface Skill {
+  category: string;
+  items: string[];
+  color: string;
+}
+
+interface Experience {
+  title: string;
+  company: string;
+  period: string;
+  description: string;
+  achievements: string[];
+}
+
+interface Education {
+  degree: string;
+  institution: string;
+  period: string;
+  details: string;
+  coursework: string[];
+}
+
+interface Project {
+  name: string;
+  tech: string;
+  description: string;
+  imageClass: string;
+}
+
+@Component({
+  selector: 'app-portfolio',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './portfolio.component.html',
+  styleUrls: ['./portfolio.component.css']
+})
+export class PortfolioComponent {
+  mobileMenuOpen = false;
+  
+  portfolioData = {
+    name: "John Doe",
+    title: "Full Stack Developer & Problem Solver",
+    about: "Passionate about creating elegant solutions to complex problems. Specialized in building scalable web applications with modern technologies. Let's build something amazing together.",
+    
+    skills: [
+      { category: "Frontend", items: ["Angular", "React", "TypeScript", "HTML/CSS", "Tailwind CSS"], color: "blue" },
+      { category: "Backend", items: ["Node.js", "Express", "Python", "Django", "REST APIs"], color: "green" },
+      { category: "Database", items: ["MongoDB", "PostgreSQL", "MySQL", "Firebase", "Redis"], color: "purple" },
+      { category: "Tools & Others", items: ["Git", "Docker", "AWS", "CI/CD", "Agile"], color: "orange" }
+    ] as Skill[],
+    
+    experience: [
+      {
+        title: "Senior Full Stack Developer",
+        company: "Tech Innovations Inc.",
+        period: "Jan 2023 - Present",
+        description: "Leading development of enterprise-scale web applications using Angular and Node.js. Implemented microservices architecture improving system performance by 45%. Mentoring junior developers and conducting code reviews.",
+        achievements: ["Reduced load time by 60%", "Led team of 5 developers", "Implemented CI/CD pipeline"]
+      },
+      {
+        title: "Full Stack Developer",
+        company: "Digital Solutions Ltd.",
+        period: "Jun 2021 - Dec 2022",
+        description: "Developed and maintained multiple client-facing web applications. Collaborated with cross-functional teams to deliver high-quality software solutions on time.",
+        achievements: ["Built 10+ web applications", "99.9% uptime achievement", "Client satisfaction: 4.8/5"]
+      },
+      {
+        title: "Junior Developer",
+        company: "StartUp Ventures",
+        period: "Jan 2020 - May 2021",
+        description: "Contributed to frontend and backend development of the company's main product. Gained experience in agile development methodologies and modern web technologies.",
+        achievements: ["Learned Angular & Node.js", "Fixed 100+ bugs", "Contributed to 3 major releases"]
+      }
+    ] as Experience[],
+    
+    education: [
+      {
+        degree: "Master of Computer Science",
+        institution: "Stanford University",
+        period: "2018 - 2020",
+        details: "Specialized in Distributed Systems and Machine Learning. GPA: 3.9/4.0",
+        coursework: ["Advanced Algorithms", "Cloud Computing", "AI & ML"]
+      },
+      {
+        degree: "Bachelor of Technology in Computer Science",
+        institution: "MIT",
+        period: "2014 - 2018",
+        details: "Focus on Software Engineering and Web Technologies. GPA: 3.8/4.0",
+        coursework: ["Data Structures", "Web Development", "Database Systems"]
+      }
+    ] as Education[],
+    
+    projects: [
+      {
+        name: "E-Commerce Platform",
+        tech: "Angular, Node.js, MongoDB",
+        description: "Full-featured online shopping platform with real-time inventory management, payment gateway integration, and admin dashboard.",
+        imageClass: "project-green-blue"
+      },
+      {
+        name: "Task Management System",
+        tech: "React, Firebase, Tailwind",
+        description: "Collaborative project management tool with real-time updates, drag-and-drop functionality, and team collaboration features.",
+        imageClass: "project-purple-pink"
+      },
+      {
+        name: "Weather Analytics Dashboard",
+        tech: "Angular, TypeScript, Chart.js",
+        description: "Interactive weather data visualization dashboard consuming multiple APIs with historical data analysis and forecasting.",
+        imageClass: "project-yellow-orange"
+      },
+      {
+        name: "Social Media API",
+        tech: "Node.js, Express, PostgreSQL",
+        description: "RESTful API for social networking with authentication, posts, comments, likes, and real-time notifications.",
+        imageClass: "project-blue-indigo"
+      },
+      {
+        name: "Fitness Tracker App",
+        tech: "Angular, Firebase, PWA",
+        description: "Progressive web app for tracking workouts, nutrition, and health metrics with offline functionality.",
+        imageClass: "project-red-pink"
+      },
+      {
+        name: "AI Chatbot Platform",
+        tech: "Python, TensorFlow, Flask",
+        description: "Intelligent chatbot framework with NLP capabilities, conversation history, and custom training options.",
+        imageClass: "project-teal-cyan"
+      }
+    ] as Project[],
+    
+    contact: {
+      email: "john.doe@example.com",
+      phone: "+1 (234) 567-8900",
+      location: "San Francisco, CA",
+      github: "https://github.com/johndoe",
+      linkedin: "https://linkedin.com/in/johndoe"
+    }
+  };
+
+  navItems = ['About', 'Skills', 'Experience', 'Education', 'Projects', 'Contact'];
+
+  toggleMobileMenu(): void {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
+
+  scrollToSection(sectionId: string): void {
+    const element = document.getElementById(sectionId.toLowerCase());
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    this.mobileMenuOpen = false;
+  }
+
+  onSubmit(): void {
+    console.log('Form submitted');
+    // Add your form submission logic here
+  }
+}
+
+
+// ============================================
+// portfolio.component.html
+// ============================================
+<!-- Navigation Bar -->
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-content">
+      <div class="logo">
+        <h1>{{ portfolioData.name }}</h1>
+      </div>
+      
+      <!-- Desktop Navigation -->
+      <div class="nav-desktop">
+        <button 
+          *ngFor="let item of navItems"
+          (click)="scrollToSection(item)"
+          class="nav-link">
+          {{ item }}
+        </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button class="mobile-menu-btn" (click)="toggleMobileMenu()">
+        <span *ngIf="!mobileMenuOpen">☰</span>
+        <span *ngIf="mobileMenuOpen">✕</span>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div *ngIf="mobileMenuOpen" class="nav-mobile">
+      <div class="mobile-menu">
+        <button 
+          *ngFor="let item of navItems"
+          (click)="scrollToSection(item)"
+          class="mobile-nav-link">
+          {{ item }}
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero/About Section -->
+<section id="about" class="hero-section">
+  <div class="container">
+    <div class="hero-content">
+      <div class="avatar">
+        {{ portfolioData.name.split(' ')[0][0] }}{{ portfolioData.name.split(' ')[1][0] }}
+      </div>
+      <h2 class="hero-title">
+        Hi, I'm <span class="gradient-text">{{ portfolioData.name }}</span>
+      </h2>
+      <p class="hero-subtitle">{{ portfolioData.title }}</p>
+      <p class="hero-description">{{ portfolioData.about }}</p>
+      <div class="hero-buttons">
+        <button class="btn-primary">Download CV</button>
+        <button class="btn-secondary" (click)="scrollToSection('contact')">Get In Touch</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="section section-white">
+  <div class="container">
+    <div class="section-header">
+      <div class="icon-wrapper">💻</div>
+      <h3 class="section-title">Skills & Technologies</h3>
+      <p class="section-subtitle">Tools and technologies I work with</p>
+    </div>
+    
+    <div class="skills-grid">
+      <div *ngFor="let skillGroup of portfolioData.skills" class="skill-card">
+        <div class="skill-icon"></div>
+        <h4 class="skill-title">{{ skillGroup.category }}</h4>
+        <ul class="skill-list">
+          <li *ngFor="let skill of skillGroup.items">
+            <span class="bullet"></span>{{ skill }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Experience Section -->
+<section id="experience" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="icon-wrapper">💼</div>
+      <h3 class="section-title">Work Experience</h3>
+      <p class="section-subtitle">My professional journey</p>
+    </div>
+    
+    <div class="experience-list">
+      <div *ngFor="let exp of portfolioData.experience" class="experience-card">
+        <div class="exp-header">
+          <div>
+            <h4 class="exp-title">{{ exp.title }}</h4>
+            <p class="exp-company">{{ exp.company }}</p>
+          </div>
+          <span class="exp-period">{{ exp.period }}</span>
+        </div>
+        <p class="exp-description">{{ exp.description }}</p>
+        <div class="achievements">
+          <span *ngFor="let achievement of exp.achievements" class="achievement-tag">
+            ✓ {{ achievement }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Education Section -->
+<section id="education" class="section section-white">
+  <div class="container">
+    <div class="section-header">
+      <div class="icon-wrapper">🎓</div>
+      <h3 class="section-title">Education</h3>
+      <p class="section-subtitle">Academic background</p>
+    </div>
+    
+    <div class="education-grid">
+      <div *ngFor="let edu of portfolioData.education" class="education-card">
+        <div class="edu-icon">🎓</div>
+        <h4 class="edu-degree">{{ edu.degree }}</h4>
+        <p class="edu-institution">{{ edu.institution }}</p>
+        <p class="edu-period">{{ edu.period }}</p>
+        <p class="edu-details">{{ edu.details }}</p>
+        <div class="coursework">
+          <span *ngFor="let course of edu.coursework" class="course-tag">
+            {{ course }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="icon-wrapper">📁</div>
+      <h3 class="section-title">Featured Projects</h3>
+      <p class="section-subtitle">Some of my recent work</p>
+    </div>
+    
+    <div class="projects-grid">
+      <div *ngFor="let project of portfolioData.projects" class="project-card">
+        <div class="project-image {{ project.imageClass }}">
+          <div class="code-icon">💻</div>
+        </div>
+        <div class="project-content">
+          <h4 class="project-name">{{ project.name }}</h4>
+          <p class="project-tech">{{ project.tech }}</p>
+          <p class="project-description">{{ project.description }}</p>
+          <div class="project-links">
+            <a href="#" class="project-link">👨‍💻 Code</a>
+            <a href="#" class="project-link">🔗 Demo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+  <div class="container">
+    <div class="section-header">
+      <h3 class="section-title text-white">Get In Touch</h3>
+      <p class="section-subtitle text-blue-100">Let's discuss your next project</p>
+    </div>
+    
+    <div class="contact-card">
+      <div class="contact-info-grid">
+        <div class="contact-info-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <h5 class="contact-label">Email</h5>
+            <a [href]="'mailto:' + portfolioData.contact.email" class="contact-value">
+              {{ portfolioData.contact.email }}
+            </a>
+          </div>
+        </div>
+        
+        <div class="contact-info-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <h5 class="contact-label">Phone</h5>
+            <a [href]="'tel:' + portfolioData.contact.phone" class="contact-value">
+              {{ portfolioData.contact.phone }}
+            </a>
+          </div>
+        </div>
+        
+        <div class="contact-info-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h5 class="contact-label">Location</h5>
+            <p class="contact-text">{{ portfolioData.contact.location }}</p>
+          </div>
+        </div>
+        
+        <div class="contact-info-item">
+          <div class="contact-icon">🔗</div>
+          <div>
+            <h5 class="contact-label">Social</h5>
+            <div class="social-links">
+              <a [href]="portfolioData.contact.github" target="_blank">GitHub</a>
+              <a [href]="portfolioData.contact.linkedin" target="_blank">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="contact-form">
+        <div class="form-row">
+          <input type="text" placeholder="Your Name" class="form-input">
+          <input type="email" placeholder="Your Email" class="form-input">
+        </div>
+        <input type="text" placeholder="Subject" class="form-input full-width">
+        <textarea rows="5" placeholder="Your Message" class="form-textarea"></textarea>
+        <button (click)="onSubmit()" class="btn-submit">Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <p class="footer-text">© 2024 {{ portfolioData.name }}. All rights reserved.</p>
+    <p class="footer-subtext">Built with Angular & Tailwind CSS</p>
+  </div>
+</footer>
+
+
+// ============================================
+// portfolio.component.css
+// ============================================
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Navigation */
+.navbar {
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 50;
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+}
+
+.logo h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #2563eb, #9333ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-desktop {
+  display: none;
+  gap: 2rem;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  color: #374151;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s;
+  font-size: 1rem;
+}
+
+.nav-link:hover {
+  color: #2563eb;
+}
+
+.mobile-menu-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.nav-mobile {
+  border-top: 1px solid #e5e7eb;
+}
+
+.mobile-menu {
+  padding: 0.5rem;
+}
+
+.mobile-nav-link {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem;
+  background: none;
+  border: none;
+  color: #374151;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mobile-nav-link:hover {
+  background: #f3f4f6;
+  color: #2563eb;
+}
+
+/* Hero Section */
+.hero-section {
+  padding: 8rem 1rem 5rem;
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+}
+
+.hero-content {
+  text-align: center;
+}
+
+.avatar {
+  width: 10rem;
+  height: 10rem;
+  background: linear-gradient(135deg, #3b82f6, #9333ea);
+  border-radius: 50%;
+  margin: 0 auto 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #2563eb, #9333ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+}
+
+.hero-description {
+  font-size: 1.125rem;
+  color: #6b7280;
+  max-width: 48rem;
+  margin: 0 auto 2rem;
+  line-height: 1.75;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  padding: 0.75rem 2rem;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.btn-secondary {
+  padding: 0.75rem 2rem;
+  background: transparent;
+  color: #2563eb;
+  border: 2px solid #2563eb;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #eff6ff;
+}
+
+/* Section Styles */
+.section {
+  padding: 5rem 1rem;
+}
+
+.section-white {
+  background: white;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.icon-wrapper {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.125rem;
+  color: #6b7280;
+}
+
+.text-white {
+  color: white !important;
+}
+
+.text-blue-100 {
+  color: #dbeafe !important;
+}
+
+/* Skills Section */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.skill-card {
+  background: linear-gradient(135deg, #f9fafb 0%, white 100%);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+  border: 1px solid #f3f4f6;
+}
+
+.skill-card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+}
+
+.skill-icon {
+  width: 3rem;
+  height: 3rem;
+  background: #dbeafe;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.skill-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.skill-list {
+  list-style: none;
+}
+
+.skill-list li {
+  color: #374151;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.bullet {
+  width: 0.5rem;
+  height: 0.5rem;
+  background: #2563eb;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+/* Experience Section */
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.experience-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #2563eb;
+  transition: all 0.3s;
+}
+
+.experience-card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.exp-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #111827;
+}
+
+.exp-company {
+  font-size: 1.25rem;
+  color: #2563eb;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+.exp-period {
+  padding: 0.5rem 1rem;
+  background: #dbeafe;
+  color: #1e40af;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.exp-description {
+  color: #374151;
+  margin-bottom: 1rem;
+  line-height: 1.75;
+}
+
+.achievements {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.achievement-tag {
+  padding: 0.5rem 0.75rem;
+  background: #f3f4f6;
+  color: #374151;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+}
+
+/* Education Section */
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.education-card {
+  background: linear-gradient(135deg, #eff6ff 0%, #f5f3ff 100%);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+.education-card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.edu-icon {
+  width: 4rem;
+  height: 4rem;
+  background: #2563eb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.edu-degree {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.edu-institution {
+  font-size: 1.25rem;
+  color: #2563eb;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.edu-period {
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+}
+
+.edu-details {
+  color: #374151;
+  margin-bottom: 1rem;
+}
+
+.coursework {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.course-tag {
+  padding: 0.5rem 0.75rem;
+  background: white;
+  color: #374151;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Projects Section */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.project-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  transform: translateY(-8px);
+}
+
+.project-image {
+  height: 12rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.code-icon {
+  font-size: 4rem;
+  opacity: 0.8;
+}
+
+.project-green-blue {
+  background: linear-gradient(135deg, #34d399, #3b82f6);
+}
+
+.project-purple-pink {
+  background: linear-gradient(135deg, #a78bfa, #ec4899);
+}
+
+.project-yellow-orange {
+  background: linear-gradient(135deg, #fbbf24, #f97316);
+}
+
+.project-blue-indigo {
+  background: linear-gradient(135deg, #60a5fa, #6366f1);
+}
+
+.project-red-pink {
+  background: linear-gradient(135deg, #f87171, #ec4899);
+}
+
+.project-teal-cyan {
+  background: linear-gradient(135deg, #2dd4bf, #06b6d4);
+}
+
+.project-content {
+  padding: 1.5rem;
+}
+
+.project-name {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.project-tech {
+  color: #2563eb;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.project-description {
+  color: #374151;
+  margin-bottom: 1rem;
+  line-height: 1.75;
+}
+
+.project-links {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.project-link {
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.project-link:hover {
+  color: #1d4ed8;
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 5rem 1rem;
+  background: linear-gradient(135deg, #2563eb, #9333ea);
+}
+
+.contact-card {
+  background: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+}
+
+.contact-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.contact-icon {
+  width: 3rem;
+  height: 3rem;
+  background: #dbeafe;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex
