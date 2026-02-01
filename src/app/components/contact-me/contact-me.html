@@ -1,64 +1,118 @@
-
 <section id="contact-info" class="container py-5 d-flex justify-content-center" style="flex-direction: column;">
   <h2 class="text-center mb-5 gradient-text">Get in Touch</h2>
+
   <div class="d-flex justify-content-center">
-  <div class="glass glow p-4 p-md-5 contact-card">
+    <div class="glass glow p-4 p-md-5 contact-card">
 
-    <div class="info-row" title="Full Name">
-      <i class="bi bi-person-fill icon"></i>
-      <span class="value">{{ fullName }}</span>
+      <div class="info-row" title="Full Name">
+        <i class="bi bi-person-fill icon"></i>
+        <span class="value">{{ fullName }}</span>
+      </div>
+
+      <div class="info-row" title="Email">
+        <i class="bi bi-envelope-fill icon"></i>
+        <span class="value">
+          <a href="mailto:{{ email }}">{{ email }}</a>
+
+          <button
+            type="button"
+            class="copy-btn position-relative"
+            (click)="copyToClipboard(email, 'email')"
+            aria-label="Copy email"
+          >
+            <i class="bi bi-clipboard"></i>
+
+            <span
+              class="copied-badge"
+              *ngIf="copiedField === 'email'"
+            >
+              Copied
+            </span>
+          </button>
+        </span>
+      </div>
+
+      <div class="info-row" title="Phone">
+        <i class="bi bi-telephone-fill icon"></i>
+        <span class="value">
+          <a href="tel:{{ phone }}">{{ phone }}</a>
+
+          <button
+            type="button"
+            class="copy-btn position-relative"
+            (click)="copyToClipboard(phone, 'phone')"
+            aria-label="Copy phone"
+          >
+            <i class="bi bi-clipboard"></i>
+
+            <span
+              class="copied-badge"
+              *ngIf="copiedField === 'phone'"
+            >
+              Copied
+            </span>
+          </button>
+        </span>
+      </div>
+
+      <div class="info-row" title="Address">
+        <i class="bi bi-geo-alt-fill icon"></i>
+        <span class="value address">
+          {{ address.line1 }}, {{ address.city }},
+          {{ address.state }} {{ address.country }} - {{ address.zip }}
+        </span>
+      </div>
+
+      <div class="info-row" title="LinkedIn">
+        <i class="bi bi-linkedin icon"></i>
+        <span class="value">
+          <a href="{{ linkedIn }}" target="_blank" rel="noopener noreferrer">
+            {{ linkedIn }}
+          </a>
+
+          <button
+            type="button"
+            class="copy-btn position-relative"
+            (click)="copyToClipboard(linkedIn, 'linkedin')"
+            aria-label="Copy LinkedIn URL"
+          >
+            <i class="bi bi-clipboard"></i>
+
+            <span
+              class="copied-badge"
+              *ngIf="copiedField === 'linkedin'"
+            >
+              Copied
+            </span>
+          </button>
+        </span>
+      </div>
+
+      <div class="info-row" title="GitHub">
+        <i class="bi bi-github icon"></i>
+        <span class="value">
+          <a href="{{ github }}" target="_blank" rel="noopener noreferrer">
+            {{ github }}
+          </a>
+
+          <button
+            type="button"
+            class="copy-btn position-relative"
+            (click)="copyToClipboard(github, 'github')"
+            aria-label="Copy GitHub URL"
+          >
+            <i class="bi bi-clipboard"></i>
+
+            <span
+              class="copied-badge"
+              *ngIf="copiedField === 'github'"
+            >
+              Copied
+            </span>
+          </button>
+        </span>
+      </div>
+
     </div>
-
-    <div class="info-row" title="Email">
-      <i class="bi bi-envelope-fill icon"></i>
-      <span class="value">
-        <a href="mailto:{{ email }}">{{ email }}</a>
-        <button type="button" class="copy-btn" (click)="copyToClipboard(email)" aria-label="Copy email">
-          <i class="bi bi-clipboard"></i>
-        </button>
-      </span>
-    </div>
-
-    <div class="info-row" title="Phone">
-      <i class="bi bi-telephone-fill icon"></i>
-      <span class="value">
-        <a href="tel:{{ phone }}">{{ phone }}</a>
-        <button type="button" class="copy-btn" (click)="copyToClipboard(phone)" aria-label="Copy phone">
-          <i class="bi bi-clipboard"></i>
-        </button>
-      </span>
-    </div>
-
-    <div class="info-row" title="Address">
-      <i class="bi bi-geo-alt-fill icon"></i>
-      <span class="value address">
-        {{ address.line1 }}, {{ address.city }},
-        {{ address.state }}
-        {{ address.country }} - {{ address.zip }}
-      </span>
-    </div>
-
-    <div class="info-row" title="LinkedIn">
-      <i class="bi bi-linkedin icon"></i>
-      <span class="value">
-        <a href="{{ linkedIn }}" target="_blank" rel="noopener noreferrer">{{ linkedIn }}</a>
-        <button type="button" class="copy-btn" (click)="copyToClipboard(linkedIn)" aria-label="Copy LinkedIn URL">
-          <i class="bi bi-clipboard"></i>
-        </button>
-      </span>
-    </div>
-
-    <div class="info-row" title="GitHub">
-      <i class="bi bi-github icon"></i>
-      <span class="value">
-        <a href="{{ github }}" target="_blank" rel="noopener noreferrer">{{ github }}</a>
-        <button type="button" class="copy-btn" (click)="copyToClipboard(github)" aria-label="Copy GitHub URL">
-          <i class="bi bi-clipboard"></i>
-        </button>
-      </span>
-    </div>
-
-
-  </div>
   </div>
 </section>
