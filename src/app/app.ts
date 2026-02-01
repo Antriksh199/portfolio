@@ -14,7 +14,7 @@ import { ContactMe } from './components/contact-me/contact-me';
 @Component({
   selector: 'app-root',
   imports: [HeaderComponent, RouterModule,
-    ContactMe, FooterComponent, ExperienceComponent, SkillsComponent, AboutComponent, ProjectsComponent, ContactComponent],
+    ContactMe, FooterComponent, ExperienceComponent, SkillsComponent, AboutComponent, ProjectsComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

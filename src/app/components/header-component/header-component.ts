@@ -14,8 +14,12 @@ export class HeaderComponent {
     {label:'Home',href:'#home'},
     {label:'Work',href:'#work'},
     {label:'Projects',href:'#projects'},
-    {label:'Contact',href:'#contact'},
+    {label:'Skills',href:'#skills'},
     {label:'Info',href:'#contact-info'}
 
   ];
+  isMenuOpen = false;
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 }

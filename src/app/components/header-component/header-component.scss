@@ -1,1 +1,35 @@
-nav{width:fit-content;border-radius:999px}
+/* The Container */
+nav {
+  width: fit-content;
+  max-width: 95%; /* Leave a tiny gap at screen edges */
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 999px;
+  overflow: hidden; /* Keeps the glass effect contained */
+}
+
+/* The List */
+.nav {
+  display: flex;
+  flex-wrap: nowrap; /* Prevents links from jumping to a second line */
+  overflow-x: auto;  /* Enables horizontal swiping */
+  padding: 0.5rem 1rem;
+  
+  /* Hide scrollbar for a cleaner "pill" look */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.nav::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
+}
+
+/* Ensure links stay readable and clickable */
+.nav-item {
+  flex: 0 0 auto; /* Prevents links from shrinking */
+}
+
+.nav-link {
+  white-space: nowrap; /* Stops text from wrapping inside the link */
+  padding: 0.5rem 1rem !important;
+}
