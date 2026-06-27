@@ -1,0 +1,32 @@
+# Local dependencies (Docker will install these fresh inside the container)
+node_modules
+.npm
+
+# Build outputs
+dist
+.angular
+
+# Git configuration and history
+.git
+.gitignore
+
+# CI/CD and local development configurations
+.github
+.vscode
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
