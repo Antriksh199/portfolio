@@ -65,6 +65,7 @@ jobs:
           ssh \
             -i ~/.ssh/${{secrets.SERVER_USERNAME}}\
             ${{secrets.SERVER_USERNAME}}@${{ secrets.SERVER }} \
+            "KUBECONFIG=/home/${{ secrets.SERVER_USERNAME }}/.kube/config \
             "kubectl set image deployment/portfolio \
             portfolio=${{ secrets.DOCKER_USERNAME }}/portfolio:latest \
             -n portfolio"
@@ -74,5 +75,6 @@ jobs:
           ssh \
             -i ~/.ssh/${{secrets.SERVER_USERNAME}} \
             ${{secrets.SERVER_USERNAME}}@${{ secrets.SERVER }} \
+            "KUBECONFIG=/home/${{ secrets.SERVER_USERNAME }}/.kube/config \
             "kubectl rollout status deployment/portfolio -n portfolio --timeout=180s"
       

@@ -12,7 +12,7 @@ projects=[
   {
     title: 'Multi-Cloud Kubernetes Microservices Platform',
     description: 'A Kubernetes infrastructure which holds and deploys multiple applications under same cluster with different namespaces.',
-    linkedIn: 'https://www.linkedin.com/posts/antriksh-pandey-80689229_kubernetes-k3s-cloudnative-activity-7482039775324119040-M0gw?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAYA2wYBoN8KMETIzEsyO84D1tusTQWhXIw'
+    github: 'https://www.linkedin.com/posts/antriksh-pandey-80689229_kubernetes-k3s-cloudnative-activity-7482039775324119040-M0gw?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAYA2wYBoN8KMETIzEsyO84D1tusTQWhXIw'
     ,logo: 'linkedIn'
   },
   {title:'MONETARY (FINANCE MANAGEMENT TOOL)',

@@ -10,8 +10,7 @@
         <div class="flex-grow-1"></div>
         <footer class="d-flex justify-content-end pt-3">
           <a
-            *ngIf="p.logo"
-            [href]="p.logo"
+            [href]="p.github"
             target="_blank"
             rel="noopener noreferrer"
             class="github-link d-inline-flex align-items-center gap-2"
@@ -22,7 +21,6 @@
           }
           @else
           {
-            
             <i class="bi bi-linkedin"></i>
             <span>View Project</span>
           }
