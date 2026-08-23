@@ -62,6 +62,16 @@ export class SkillsComponent {
     ]
   },
   {
+    category: 'Machine Learning & AI',
+    items: [
+      {name: 'numpy', level: 70},
+      {name: 'pandas', level: 70},
+      {name: 'matplotlib', level: 60},
+      {name: 'sklearn', level: 75},
+      {name: 'PyTorch', level: 50}
+    ]
+  },
+  {
     category: 'Language & Tools',
     items: [
       {name: 'C#', level: 80},
@@ -69,6 +79,7 @@ export class SkillsComponent {
       {name: 'Javascript', level: 80},
       {name: 'Bash', level: 60},
       {name: 'Git', level: 70},
+      {name: 'VS Code', level: 70},
       {name: 'Visual Studio', level: 80},
       {name: 'ServiceNow', level: 80},
       {name: 'JIRA', level: 80}

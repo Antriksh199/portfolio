@@ -10,14 +10,23 @@
         <div class="flex-grow-1"></div>
         <footer class="d-flex justify-content-end pt-3">
           <a
-            *ngIf="p.github"
-            [href]="p.github"
+            *ngIf="p.logo"
+            [href]="p.logo"
             target="_blank"
             rel="noopener noreferrer"
             class="github-link d-inline-flex align-items-center gap-2"
           >
+          @if (p.logo === 'github') {
             <i class="bi bi-github"></i>
             <span>View Code</span>
+          }
+          @else
+          {
+            
+            <i class="bi bi-linkedin"></i>
+            <span>View Project</span>
+          }
+            
           </a>
         </footer>
 
